@@ -81,7 +81,13 @@ public class Cliente {
 	public String getCelular() {
 		return celular;
 	}
+
+        @Override
+        public String toString() {
+            return "Cliente{" + "nome=" + nome + ", sobrenome=" + sobrenome + ", data_nascimento=" + data_nascimento + ", CPF=" + CPF + ", endereco=" + endereco + ", email=" + email + ", telefone=" + telefone + ", celular=" + celular + '}';
+        }
 	
+       
 	
 	
 

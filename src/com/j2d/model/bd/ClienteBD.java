@@ -10,8 +10,17 @@ import com.j2d.utils.Message;
 import java.sql.Date;
 
 public class ClienteBD {
+    
+    private static ClienteBD singleton;
 
 	BDMySql bdMySql = BDMySql.getInstance();
+        
+        public static ClienteBD getInstance(){
+		if(singleton==null)
+			singleton=new ClienteBD();
+		
+		return singleton;
+	}
 	
 	protected int insert(Cliente c) {
 
@@ -62,7 +71,7 @@ public class ClienteBD {
 		}
 	}
 
-	protected Vector<Cliente> getAll() {
+	public Vector<Cliente> getAll() {
 		try {
 			/*PreparedStatement ps = bdMySql.getConnection().prepareStatement(
 					"select * from cliente");

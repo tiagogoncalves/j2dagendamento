@@ -32,6 +32,7 @@ public class MainFrame extends JFrame {
 	private JLabel lbl_cliente = null;
 	private JLabel lbl_servico = null;
 	private JLabel lbl_agenda = null;
+        private JLabel lbl_relatorio = null;
 	private JScrollPane jScrollPane = null;
 	private JTable tb_aniversariantes = null;
 	
@@ -82,6 +83,12 @@ public class MainFrame extends JFrame {
 			gridBagServico.insets = new Insets(5, 3, 2, 7);
 			gridBagServico.gridy = 1;
 			gridBagServico.gridx = 1;
+                        
+                        GridBagConstraints gridBagRelatorios = new GridBagConstraints();
+			gridBagRelatorios.insets = new Insets(10, 3, 6, 2);
+			gridBagRelatorios.gridy = 2;
+			gridBagRelatorios.weighty = 0.25;
+			gridBagRelatorios.gridx = 0;
 			
 			GridBagConstraints gridBagPanelAniversaritantes = new GridBagConstraints();
 			gridBagPanelAniversaritantes.fill = GridBagConstraints.HORIZONTAL;
@@ -91,7 +98,8 @@ public class MainFrame extends JFrame {
 			gridBagPanelAniversaritantes.weightx = 0.0;
 			gridBagPanelAniversaritantes.weighty = 0.25;
 			gridBagPanelAniversaritantes.insets = new Insets(0, 0, 0, 0);
-				
+                        
+                        
 			lbl_agenda = new JLabel(new ImageIcon(getClass().getResource("/images/fila.png")));
 			lbl_agenda.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -126,6 +134,14 @@ public class MainFrame extends JFrame {
 					
 				}
 			});
+                        
+                        lbl_relatorio = new JLabel(new ImageIcon(getClass().getResource("/images/relatorios.png")));
+			lbl_relatorio.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			lbl_relatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					WindowManager.open(RelatoriosView.getInstance());
+				}
+			});
 			
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new GridBagLayout());
@@ -133,6 +149,7 @@ public class MainFrame extends JFrame {
 			jContentPane.add(lbl_cliente, gridBagClientes);
 			jContentPane.add(lbl_servico, gridBagServico);
 			jContentPane.add(lbl_agenda, gridBagAgenda);
+                        jContentPane.add(lbl_relatorio, gridBagRelatorios);
 			jContentPane.add(getJScrollPane(), gridBagPanelAniversaritantes);
 		}
 		return jContentPane;
