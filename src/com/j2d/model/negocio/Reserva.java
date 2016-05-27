@@ -74,4 +74,11 @@ public class Reserva {
 		return atendido;
 	}
 
+    @Override
+    public String toString() {
+        return "Reserva{" + "idreserva=" + idreserva + ", hora=" + hora + ", data=" + data + ", idcliente=" + idcliente + ", idtipo_servico=" + idtipo_servico + ", atendido=" + atendido + '}';
+    }
+        
+        
+
 }

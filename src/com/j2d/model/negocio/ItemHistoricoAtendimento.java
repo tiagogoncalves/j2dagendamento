@@ -32,5 +32,12 @@ public class ItemHistoricoAtendimento {
 	public Reserva getReserva() {
 		return reserva;
 	}
+
+    @Override
+    public String toString() {
+        return "ItemHistoricoAtendimento{" + "reserva=" + reserva + ", relatorio=" + relatorio + ", preco=" + preco + ", id=" + id + '}';
+    }
+        
+        
 	
 }

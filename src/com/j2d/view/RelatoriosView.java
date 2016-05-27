@@ -1,6 +1,7 @@
 package com.j2d.view;
 
 import com.j2d.model.bd.ClienteBD;
+import com.j2d.model.bd.HistoricoAtendimentoBD;
 import com.j2d.model.negocio.Cliente;
 import com.j2d.utils.WindowManager;
 import java.awt.GridBagConstraints;
@@ -20,7 +21,14 @@ public class RelatoriosView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
-	private JButton btnRelClientesMaisAtendidos = null;
+        
+	private JButton btnRelClientesAtendidos = null;
+        private JButton btnRelClientesMaisAtendidos = null;
+        private JButton btnRelServicosMaisRealizados = null;
+        private JButton btnRelServicosMenosRealizados = null;
+        private JButton btnRelValorVendasDoMes = null;
+        private JButton btnRelValorVendasMediaPorDia = null;
+        
 	private JScrollPane jScrollPane = null;
 	private static RelatoriosView singleton;
 	
@@ -52,60 +60,112 @@ public class RelatoriosView extends JFrame {
 
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
-			GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
-			gridBagConstraints11.gridx = 2;
-			gridBagConstraints11.insets = new Insets(0, 0, 3, 0);
-			gridBagConstraints11.gridy = 2;
-			GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
-			gridBagConstraints7.gridx = 4;
-			gridBagConstraints7.gridy = 2;
-			GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
-			gridBagConstraints6.gridx = 3;
-			gridBagConstraints6.anchor = GridBagConstraints.EAST;
-			gridBagConstraints6.gridy = 2;
-			GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
-			gridBagConstraints5.gridx = 1;
-			gridBagConstraints5.fill = GridBagConstraints.NONE;
-			gridBagConstraints5.weightx = 0.0;
-			gridBagConstraints5.insets = new Insets(0, 4, 3, 0);
-			gridBagConstraints5.anchor = GridBagConstraints.WEST;
-			gridBagConstraints5.gridy = 2;
-			GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
-			gridBagConstraints4.gridx = 0;
-			gridBagConstraints4.insets = new Insets(0, 0, 3, 0);
-			gridBagConstraints4.gridy = 2;
-			GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
-			gridBagConstraints3.fill = GridBagConstraints.BOTH;
-			gridBagConstraints3.gridy = 1;
-			gridBagConstraints3.weightx = 1.0;
-			gridBagConstraints3.weighty = 1.0;
-			gridBagConstraints3.gridwidth = 5;
-			gridBagConstraints3.gridx = 0;
-			GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
-			gridBagConstraints2.gridx = 2;
-			gridBagConstraints2.weightx = 0.4;
-			gridBagConstraints2.anchor = GridBagConstraints.WEST;
-			gridBagConstraints2.gridwidth = 2;
-			gridBagConstraints2.gridy = 0;
 			GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
-			gridBagConstraints1.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints1.gridx = 0;
+			gridBagConstraints1.insets = new Insets(0, 6, 0, 0);
 			gridBagConstraints1.gridy = 0;
-			gridBagConstraints1.weightx = 0.3;
-			gridBagConstraints1.gridx = 1;
-			GridBagConstraints gridBagConstraints = new GridBagConstraints();
-			gridBagConstraints.gridx = 0;
-			gridBagConstraints.insets = new Insets(0, 6, 0, 0);
-			gridBagConstraints.gridy = 0;
-			btnRelClientesMaisAtendidos = new JButton("Clientes mais atendidos");
-                        btnRelClientesMaisAtendidos.addMouseListener(new java.awt.event.MouseAdapter() {
+                        
+                        GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
+			gridBagConstraints1.gridx = 0;
+			gridBagConstraints1.insets = new Insets(0, 6, 0, 0);
+			gridBagConstraints1.gridy = 0;
+                        
+                        GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
+			gridBagConstraints1.gridx = 0;
+			gridBagConstraints1.insets = new Insets(0, 6, 0, 0);
+			gridBagConstraints1.gridy = 0;
+                        
+                        GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
+			gridBagConstraints1.gridx = 0;
+			gridBagConstraints1.insets = new Insets(0, 6, 0, 0);
+			gridBagConstraints1.gridy = 0;
+                        
+                        GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
+			gridBagConstraints1.gridx = 0;
+			gridBagConstraints1.insets = new Insets(0, 6, 0, 0);
+			gridBagConstraints1.gridy = 0;
+                        
+                        GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
+			gridBagConstraints1.gridx = 0;
+			gridBagConstraints1.insets = new Insets(0, 6, 0, 0);
+			gridBagConstraints1.gridy = 0;
+                        
+			btnRelClientesAtendidos = new JButton("Clientes atendidos");
+                        btnRelClientesAtendidos.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-                                        System.out.println("Clientes");
-                                    Vector<Cliente> clientes = ClienteBD.getInstance().getAll();
+                                    System.out.println("Relatório de clientes atendidos");
+                                    Vector<Cliente> clientes = HistoricoAtendimentoBD.getInstance().getClientesAtendidos();
                                     Iterator it = clientes.iterator();
                                     while(it.hasNext()){
                                         Cliente cliente = (Cliente) it.next();
-                                        System.out.println(cliente);
-                                       
+                                        System.out.println(cliente);                                   
+                                    }
+				}
+			});
+                        
+                        
+                        btnRelClientesMaisAtendidos = new JButton("Clientes mais atendidos");
+                        btnRelClientesMaisAtendidos.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+                                    System.out.println("Relatório de clientes mais atendidos");
+                                    Vector<Cliente> clientes = HistoricoAtendimentoBD.getInstance().getClientesAtendidos();
+                                    Iterator it = clientes.iterator();
+                                    while(it.hasNext()){
+                                        Cliente cliente = (Cliente) it.next();
+                                        System.out.println(cliente);                                   
+                                    }
+				}
+			});
+                        
+                        btnRelServicosMaisRealizados = new JButton("Serviços mais realizados");
+                        btnRelServicosMaisRealizados.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+                                    System.out.println("Relatório de serviços mais realizados");
+                                    Vector<Cliente> clientes = HistoricoAtendimentoBD.getInstance().getClientesAtendidos();
+                                    Iterator it = clientes.iterator();
+                                    while(it.hasNext()){
+                                        Cliente cliente = (Cliente) it.next();
+                                        System.out.println(cliente);                                   
+                                    }
+				}
+			});
+                        
+                        btnRelServicosMenosRealizados = new JButton("Serviços menos realizados");
+                        btnRelServicosMenosRealizados.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+                                    System.out.println("Relatório de serviços menos realizados");
+                                    Vector<Cliente> clientes = HistoricoAtendimentoBD.getInstance().getClientesAtendidos();
+                                    Iterator it = clientes.iterator();
+                                    while(it.hasNext()){
+                                        Cliente cliente = (Cliente) it.next();
+                                        System.out.println(cliente);                                   
+                                    }
+				}
+			});
+                        
+                        btnRelValorVendasDoMes = new JButton("Relatório do valor das vendas por mês");
+                        btnRelValorVendasDoMes.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+                                    System.out.println("Relatório do valor das vendas por mês");
+                                    Vector<Cliente> clientes = HistoricoAtendimentoBD.getInstance().getClientesAtendidos();
+                                    Iterator it = clientes.iterator();
+                                    while(it.hasNext()){
+                                        Cliente cliente = (Cliente) it.next();
+                                        System.out.println(cliente);                                   
+                                    }
+				}
+			});
+                        
+                        
+                        btnRelValorVendasMediaPorDia = new JButton("Relatório do valor médio de vendas por dia da semana ao longo do ano");
+                        btnRelValorVendasMediaPorDia.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+                                    System.out.println("Relatório do valor médio de vendas por dia da semana ao longo do ano");
+                                    Vector<Cliente> clientes = HistoricoAtendimentoBD.getInstance().getClientesAtendidos();
+                                    Iterator it = clientes.iterator();
+                                    while(it.hasNext()){
+                                        Cliente cliente = (Cliente) it.next();
+                                        System.out.println(cliente);                                   
                                     }
 				}
 			});
@@ -113,7 +173,12 @@ public class RelatoriosView extends JFrame {
                         
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new GridBagLayout());
-			jContentPane.add(btnRelClientesMaisAtendidos, gridBagConstraints);
+			jContentPane.add(btnRelClientesAtendidos, gridBagConstraints1);
+                        jContentPane.add(btnRelClientesMaisAtendidos, gridBagConstraints2);
+                        jContentPane.add(btnRelServicosMaisRealizados, gridBagConstraints3);
+                        jContentPane.add(btnRelServicosMenosRealizados, gridBagConstraints4);
+                        jContentPane.add(btnRelValorVendasDoMes, gridBagConstraints5);
+                        jContentPane.add(btnRelValorVendasMediaPorDia, gridBagConstraints6);
 		}
 		return jContentPane;
 	}

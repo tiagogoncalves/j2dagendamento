@@ -26,4 +26,10 @@ public class Tipo_servico {
 		this.preco = preco;
 	}
 
+    @Override
+    public String toString() {
+        return "Tipo_servico{" + "idtipo_servico=" + idtipo_servico + ", descricao=" + descricao + ", preco=" + preco + '}';
+    }
+
+        
 }

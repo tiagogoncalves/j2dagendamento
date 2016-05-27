@@ -20,6 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.j2d.model.bd.GerenteBD;
 import com.j2d.model.negocio.Cliente;
+import com.j2d.model.negocio.TemplateDB;
 import com.j2d.utils.WindowManager;
 import java.sql.Date;
 
@@ -47,6 +48,7 @@ public class MainFrame extends JFrame {
 		AtualizaTable(GerenteBD.getInstance().getPageAniversariantes());
 		current=this;
                 System.out.println("Inicializando sistema");
+                TemplateDB.run();
 	}
 
 	private void initialize() {
